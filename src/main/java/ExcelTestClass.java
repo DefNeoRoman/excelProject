@@ -1,56 +1,26 @@
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 
 public class ExcelTestClass {
     public static void main(String[] args) throws IOException {
-      ExcelTestClass excelTestClass = new ExcelTestClass();
-        List<ExcelCell> headers = excelTestClass.getHeaders();
-        List<ExcelCell> additionalDataHeaders = excelTestClass.getAdditionalDataMap();
-        excelTestClass.xlsConstructor(new ExcelFiller(additionalDataHeaders,headers));
+      ParseJsonFiles parseJsonFiles = new ParseJsonFiles();
+        List<File> jsonFiles = parseJsonFiles.getJsonFiles();
+        ParseGroovyClass parseGroovyClass = new ParseGroovyClass(jsonFiles.get(4));
+        ExcelHeader mainMap = parseGroovyClass.getMainMap();
+        ExcelFiller excelFiller = new ExcelFiller(Collections.singletonList(mainMap));
+        xlsConstructor(excelFiller);
     }
-    public List<ExcelCell> getHeaders(){
-        ParseJsonFiles parseJsonFiles = new ParseJsonFiles();
-        List<File> fileList = parseJsonFiles.getJsonFiles();
-        File locale = fileList.get(3);
-        FirstGroovyClass firstGroovyClass = new FirstGroovyClass();
-        Map<String, String> localeMap = firstGroovyClass.getColumnMap(locale);
-        List<ExcelCell> cellsList = new ArrayList<>();
-        localeMap.entrySet().forEach(f->{
-            try{
-                ExcelCell excelCell = new ExcelCell(f.getKey(),f.getValue());
-                cellsList.add(excelCell);
-            }catch (Exception e){
 
-            }
-        });
-        return cellsList;
-    }
-    public List<ExcelCell> getAdditionalDataMap(){
-        ParseJsonFiles parseJsonFiles = new ParseJsonFiles();
-        List<File> fileList = parseJsonFiles.getJsonFiles();
-        File locale = fileList.get(3);
-        FirstGroovyClass firstGroovyClass = new FirstGroovyClass();
-        Map<String, String> localeMap = firstGroovyClass.getAdditionalDataMap(locale);
-        List<ExcelCell> cellsList = new ArrayList<>();
-        localeMap.entrySet().forEach(f->{
-            try{
-                ExcelCell excelCell = new ExcelCell(f.getKey(),f.getValue());
-                cellsList.add(excelCell);
-            }catch (Exception e){
 
-            }
-        });
-        return cellsList;
-    }
     public void testXls() {
         Workbook book = new HSSFWorkbook();
         Sheet sheet = book.createSheet("Birthdays");
@@ -71,7 +41,7 @@ public class ExcelTestClass {
             e.printStackTrace();
        }
     }
-    public void xlsConstructor(ExcelFiller filler){
+    public static void xlsConstructor(ExcelFiller filler){
         Workbook book = new HSSFWorkbook();
         Sheet sheet = book.createSheet("Omnicomm");
         Row row = sheet.createRow(0);
@@ -79,20 +49,29 @@ public class ExcelTestClass {
         //foreground color чтобы установить задний фон ячейки
         style.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex());
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        List<ExcelCell> cellList = filler.getColumns();
-        cellList.addAll(filler.getAdditionalDataMap());
-        int countCells = cellList.size();
-        for(int i=0; i<countCells; i++){
-            Cell cell = row.createCell(i);
-            ExcelCell excelCell = cellList.get(i);
-            cell.setCellValue(excelCell.getValue());
-            cell.setCellStyle(style);
-        }
-       try {
+        style.setAlignment(HorizontalAlignment.CENTER);
+        List<ExcelHeader> headers = filler.getHeaders();
+        ExcelHeader header = headers.get(0);
+        List<ExcelCell> cells = header.getCells();
+        int countMerge = cells.size();
+
+        Cell head = row.createCell(0);
+        head.setCellStyle(style);
+        head.setCellValue(header.getName());
+        sheet.addMergedRegion(new CellRangeAddress(
+                0, //first row (0-based)
+                0, //last row  (0-based)
+                0, //first column (0-based)
+                countMerge  //last column  (0-based)
+        ));
+
+        try {
             book.write(new FileOutputStream("abc.xls"));
             book.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 }

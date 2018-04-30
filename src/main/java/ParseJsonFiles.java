@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseJsonFiles {
-    public static void main(String[] args) {
 
-
-    }
     public List<File> getJsonFiles(){
-        URL locale =    ParseJsonFiles.class.getResource("locale.json");
-        URL rows =      ParseJsonFiles.class.getResource("rows.json");
-        URL xlsSchema = ParseJsonFiles.class.getResource("xlsModel.json");
+        URL locale =    ParseJsonFiles.class.getResource("fake/locale.json");
+        URL rows =      ParseJsonFiles.class.getResource("fake/rows.json");
+        URL xlsSchema = ParseJsonFiles.class.getResource("fake/xlsModel.json");
         URL local_ru = ParseJsonFiles.class.getResource("localization-ru.json");
+        URL groups = ParseJsonFiles.class.getResource("groups.json");
 
         List<File> files = new ArrayList<>();
 
@@ -20,6 +18,7 @@ public class ParseJsonFiles {
         files.add(new File(rows.getFile()));
         files.add(new File(xlsSchema.getFile()));
         files.add(new File(local_ru.getFile()));
+        files.add(new File(groups.getFile()));
 
         return files;
     }
