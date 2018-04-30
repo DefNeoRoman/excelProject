@@ -1,0 +1,24 @@
+{
+  "rows":[
+    {
+      "mileage" : "200",
+      "fuelConsumption": "150",
+      "dutyConsumptionMH" : "8"
+    },
+    {
+      "mileage" : "210",
+      "fuelConsumption": "155",
+      "dutyConsumptionMH" : "8"
+    },
+    {
+      "mileage" : "220",
+      "fuelConsumption": "156",
+      "dutyConsumptionMH" : "8"
+    },
+    {
+      "mileage" : "23",
+      "fuelConsumption": "157",
+      "dutyConsumptionMH" : "8"
+    }
+  ]
+}

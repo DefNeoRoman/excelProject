@@ -1,0 +1,5 @@
+{
+  "columnMap"         : "language.column",
+  "additionalDataMap" : "language.column.additionalData",
+  "groupsMap"         : "language.column.groups"
+}

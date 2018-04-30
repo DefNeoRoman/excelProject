@@ -1,0 +1,20 @@
+{
+
+  "dutyConsumptionMH" :{
+              "format": "0.0",
+              "default_value": "-",
+              "visible" : true
+              },
+  "mileage" :
+              {
+                "format": "0.00",
+                "default_value": "++",
+                "visible" : true
+              },
+  "fuelConsumption":
+              {
+                 "format": "0.000",
+                 "default_value": "NOT_DEFINED",
+                 "visible" : true
+               }
+}
