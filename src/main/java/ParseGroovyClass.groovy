@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import org.apache.poi.poifs.filesystem.Entry
 
 // Сюда закладываем схему и дальше с ней работаем
 class ParseGroovyClass {
@@ -12,7 +13,12 @@ class ParseGroovyClass {
         JsonSlurper jsonSlurper = new JsonSlurper();
         def res = jsonSlurper.parse(file)
         String name = res.groups.main.name;
-        List<ExcelCell> cellList = (List)res.groups.main.fields;
+        List<ExcelCell> cellList = new ArrayList<>();
+
+       def list = (Map)res.groups.main.fields;
+
+        list.each {key,value -> cellList.add(new ExcelCell(key,value))}
+
         ExcelHeader header = new ExcelHeader(name,cellList);
        return  header;
     }

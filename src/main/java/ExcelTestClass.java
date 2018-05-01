@@ -42,36 +42,37 @@ public class ExcelTestClass {
        }
     }
     public static void xlsConstructor(ExcelFiller filler){
-        Workbook book = new HSSFWorkbook();
-        Sheet sheet = book.createSheet("Omnicomm");
-        Row row = sheet.createRow(0);
-        CellStyle style = book.createCellStyle();
-        //foreground color чтобы установить задний фон ячейки
-        style.setFillForegroundColor(IndexedColors.BLUE_GREY.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        style.setAlignment(HorizontalAlignment.CENTER);
+        XlsGenerator xlsGenerator = new XlsGenerator();
+        Workbook book = xlsGenerator.getBook();
+        Sheet sheet = xlsGenerator.getSheet();
+        Row headerRow = sheet.createRow(0);
+        Row underHeadRow = sheet.createRow(1);
+        CellStyle headerStyle = xlsGenerator.getHeaderStyle();
         List<ExcelHeader> headers = filler.getHeaders();
         ExcelHeader header = headers.get(0);
         List<ExcelCell> cells = header.getCells();
         int countMerge = cells.size();
-
-        Cell head = row.createCell(0);
-        head.setCellStyle(style);
+        Cell head = headerRow.createCell(0);
+        head.setCellStyle(headerStyle);
         head.setCellValue(header.getName());
         sheet.addMergedRegion(new CellRangeAddress(
-                0, //first row (0-based)
-                0, //last row  (0-based)
+                0, //first headerRow (0-based)
+                0, //last headerRow  (0-based)
                 0, //first column (0-based)
                 countMerge  //last column  (0-based)
         ));
+       for(int i=0; i< cells.size(); i++){
+           Cell currentCell = underHeadRow.createCell(i);
 
+           ExcelCell excelCell =  cells.get(i);
+
+           currentCell.setCellValue(cells.get(i).getValue());
+       }
         try {
             book.write(new FileOutputStream("abc.xls"));
             book.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
