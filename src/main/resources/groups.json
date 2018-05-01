@@ -1,18 +1,17 @@
 {
   "groups": {
     "main": {
-      "name":"Общие параметры",
+      "name": "Общие параметры",
       "fields": {
         "shiftsStart": "Время начала работы в смену",
         "shiftsEnd": "Время окончания работы в смену",
         "date": "Дата",
         "startTime": "Время начала смены",
         "endTime": "Время окончания смены"
-                }
       }
     },
-    "movement":{
-      "name":"Движение и работа",
+    "movement": {
+      "name": "Движение и работа",
       "fields": {
         "mileage": "Пробег, км",
         "mileageSpeeding": "Пробег с превышением скорости, км",
@@ -28,142 +27,141 @@
         "workedNoMovement": "Время работы двигателя без движения, час:мин:сек",
         "excessRPM": "Время работы двигателя на предельных оборотах, час:мин:сек"
       }
-    } ,
-    "fuel":{
-      "name":"Топливо (основная ёмкость)",
-      "fields": [
-        {"startVolume": "Начальный объем, <mu_volume>"},
-        {"endVolume": "Конечный объем, <mu_volume>"},
-        {"consumption": "Фактический расход, <mu_volume>"},
-        {"normConsumption100": "Расчетный расход по норме на 100 км, <mu_volume>"},
-        {"overrun100km": "Перерасход от нормы на 100 км за период, <mu_volume>"},
-        {"refuelVolume": "Объём заправок, <mu_volume>"},
-        {"drainingVolume": "Объём сливов, <mu_volume>"},
-        {"fillVolume": "Объём заливов, <mu_volume>"},
-        {"deliveryVolume": "Объём выдач, <mu_volume>"},
-        {"fuelBy100": "Фактический расход на 100 км, <mu_volume>"},
-        {"fuelByWOHour": "Фактический расход за час работы двигателя, <mu_volume>"},
-        {"overrun1h": "Перерасход от нормы на час работы двигателя за период, <mu_volume>"},
-        {"fuelByHour": "Фактический расход за час работы двигателя в движении, <mu_volume>"},
-        {"deviationDraining": "Возможный слив, <mu_volume>"},
-        {"deviationExceeding": "Превыш. объёма выдач над объёмом заливов, <mu_volume>"},
-        {"minFuelVolume": "Минимальный объём, <mu_volume>"},
-        {"maxFuelVolume": "Максимальный объём, <mu_volume>"},
-        {"fuelConsumptionOnMove100": "Фактический расход на 100 км в движении, <mu_volume>"},
-        {"fuelConsumptionOnMove": "Фактический расход в движении, <mu_volume>"},
-        {"fuelConsumptionWithoutMovement": "Фактический расход без движения, <mu_volume>"},
-        {"dutyConsumption100": "Норма расхода на 100 км, <mu_volume>"},
-        {"fuelConsumption100Dev": "Отклонение от нормы на 100 км, %"},
-        {"dutyConsumptionMH": "Норма расхода на час работы двигателя, л"},
-        {"normConsumptioMH": "Расчетный расход по норме на час работы двигателя, л"},
-        {"normFuelConsumptionDeviationByHour": "Отклонение от нормы на час работы двигателя, %"}
-      ]
-    } ,
-
-    "fuel2": {
-      "name":"Топливо (дополнительная ёмкость)",
-      "fields":[
-        {"startVolume_additional_2": "Начальный объем, л"},
-        {"endVolume_additional_2": "Конечный объем, л"},
-        {"fuelConsumption_additional_2": "Фактический расход, л"},
-        {"refuelling_additional_2": "Объем заправок, л"},
-        {"draining_additional_2": "Объем сливов, л"},
-        {"minVolume_additional_2": "Минимальный объём, <mu_volume>"},
-        {"maxVolume_additional_2": "Максимальный объём, <mu_volume>"},
-        {"fuelBy100_additional_2": "Фактический расход на 100 км, <mu_volume>"}
-      ]
     },
-   "uv1":{
+    "fuel": {
+      "name": "Топливо (основная ёмкость)",
+      "fields": {
+        "startVolume": "Начальный объем",
+        "endVolume": "Конечный объем",
+        "consumption": "Фактический расход",
+        "normConsumption100": "Расчетный расход по норме на 100 км",
+        "overrun100km": "Перерасход от нормы на 100 км за период",
+        "refuelVolume": "Объём заправок",
+        "drainingVolume": "Объём сливов",
+        "fillVolume": "Объём заливов",
+        "deliveryVolume": "Объём выдач",
+        "fuelBy100": "Фактический расход на 100 км",
+        "fuelByWOHour": "Фактический расход за час работы двигателя",
+        "overrun1h": "Перерасход от нормы на час работы двигателя за период",
+        "fuelByHour": "Фактический расход за час работы двигателя в движении",
+        "deviationDraining": "Возможный слив",
+        "deviationExceeding": "Превыш. объёма выдач над объёмом заливов",
+        "minFuelVolume": "Минимальный объём, ",
+        "maxFuelVolume": "Максимальный объём,",
+        "fuelConsumptionOnMove100": "Фактический расход на 100 км в движении,",
+        "fuelConsumptionOnMove": "Фактический расход в движении,",
+        "fuelConsumptionWithoutMovement": "Фактический расход без движения,",
+        "dutyConsumption100": "Норма расхода на 100 км",
+        "fuelConsumption100Dev": "Отклонение от нормы на 100 км, %",
+        "dutyConsumptionMH": "Норма расхода на час работы двигателя, л",
+        "normConsumptioMH": "Расчетный расход по норме на час работы двигателя, л",
+        "normFuelConsumptionDeviationByHour": "Отклонение от нормы на час работы двигателя, %"
+      }
+    },
+    "fuel2": {
+      "name": "Топливо (дополнительная ёмкость)",
+      "fields": {
+        "startVolume_additional_2": "Начальный объем, л",
+        "endVolume_additional_2": "Конечный объем, л",
+        "fuelConsumption_additional_2": "Фактический расход, л",
+        "refuelling_additional_2": "Объем заправок, л",
+        "draining_additional_2": "Объем сливов, л",
+        "minVolume_additional_2": "Минимальный объём",
+        "maxVolume_additional_2": "Максимальный объём",
+        "fuelBy100_additional_2": "Фактический расход на 100 км"
+      }
+    },
+    "uv1": {
       "name": "Дополнительное оборудование №1",
-      "fields": [
-        {"univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км"},
-        {"univInputMaxValueByPeriod": "Максимальное значение за период"},
-        {"univInputMinValueByPeriod": "Минимальное значение за период"},
-        {"univInputSumValueByPeriod": "Суммарное значение за период"},
-        {"univInputOnTime": "Время работы, час:мин:сек"} ,
-        {"univInputOffTime": "Время простоя, час:мин:сек"} ,
-        {"univInputOnConsumption": "Расход с включенным доп. оборудованием, <mu_volume>"},
-        {"univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км, <mu_volume>"},
-        {"univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас, <mu_volume>"},
-        {"univInputCritTime": "Время работы выше допустимого значения, час:мин:сек"},
-        {"univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек"},
-        {"univInputMileagePerLitre": "Пробег на 1 <mu_volume> с включенным доп. оборудованием, км"}
-      ]
-    } ,
-    "uv2":{
+      "fields": {
+        "univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км",
+        "univInputMaxValueByPeriod": "Максимальное значение за период",
+        "univInputMinValueByPeriod": "Минимальное значение за период",
+        "univInputSumValueByPeriod": "Суммарное значение за период",
+        "univInputOnTime": "Время работы, час:мин:сек",
+        "univInputOffTime": "Время простоя, час:мин:сек",
+        "univInputOnConsumption": "Расход с включенным доп. оборудованием",
+        "univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км",
+        "univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас",
+        "univInputCritTime": "Время работы выше допустимого значения, час:мин:сек",
+        "univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек",
+        "univInputMileagePerLitre": "Пробег на 1  с включенным доп. оборудованием, км"
+      }
+    },
+    "uv2": {
       "name": "Дополнительное оборудование №2",
-      "fields": [
-        {"univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км"},
-        {"univInputMaxValueByPeriod": "Максимальное значение за период"},
-        {"univInputMinValueByPeriod": "Минимальное значение за период"},
-        {"univInputSumValueByPeriod": "Суммарное значение за период"},
-        {"univInputOnTime": "Время работы, час:мин:сек"} ,
-        {"univInputOffTime": "Время простоя, час:мин:сек"} ,
-        {"univInputOnConsumption": "Расход с включенным доп. оборудованием, <mu_volume>"},
-        {"univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км, <mu_volume>"},
-        {"univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас, <mu_volume>"},
-        {"univInputCritTime": "Время работы выше допустимого значения, час:мин:сек"},
-        {"univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек"},
-        {"univInputMileagePerLitre": "Пробег на 1 <mu_volume> с включенным доп. оборудованием, км"}
-      ]
-    } ,
-    "uv3":{
-      "name" : "Дополнительное оборудование №3",
-      "fields": [
-        {"univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км"},
-        {"univInputMaxValueByPeriod": "Максимальное значение за период"},
-        {"univInputMinValueByPeriod": "Минимальное значение за период"},
-        {"univInputSumValueByPeriod": "Суммарное значение за период"},
-        {"univInputOnTime": "Время работы, час:мин:сек"} ,
-        {"univInputOffTime": "Время простоя, час:мин:сек"} ,
-        {"univInputOnConsumption": "Расход с включенным доп. оборудованием, <mu_volume>"},
-        {"univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км, <mu_volume>"},
-        {"univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас, <mu_volume>"},
-        {"univInputCritTime": "Время работы выше допустимого значения, час:мин:сек"},
-        {"univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек"},
-        {"univInputMileagePerLitre": "Пробег на 1 <mu_volume> с включенным доп. оборудованием, км"}
-      ]
-    } ,
+      "fields": {
+        "univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км",
+        "univInputMaxValueByPeriod": "Максимальное значение за период",
+        "univInputMinValueByPeriod": "Минимальное значение за период",
+        "univInputSumValueByPeriod": "Суммарное значение за период",
+        "univInputOnTime": "Время работы, час:мин:сек",
+        "univInputOffTime": "Время простоя, час:мин:сек",
+        "univInputOnConsumption": "Расход с включенным доп. оборудованием",
+        "univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км",
+        "univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас",
+        "univInputCritTime": "Время работы выше допустимого значения, час:мин:сек",
+        "univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек",
+        "univInputMileagePerLitre": "Пробег на 1  с включенным доп. оборудованием, км"
+      }
+    },
+    "uv3": {
+      "name": "Дополнительное оборудование №3",
+      "fields": {
+        "univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км",
+        "univInputMaxValueByPeriod": "Максимальное значение за период",
+        "univInputMinValueByPeriod": "Минимальное значение за период",
+        "univInputSumValueByPeriod": "Суммарное значение за период",
+        "univInputOnTime": "Время работы, час:мин:сек",
+        "univInputOffTime": "Время простоя, час:мин:сек",
+        "univInputOnConsumption": "Расход с включенным доп. оборудованием",
+        "univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км",
+        "univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас, <mu_volume>",
+        "univInputCritTime": "Время работы выше допустимого значения, час:мин:сек",
+        "univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек",
+        "univInputMileagePerLitre": "Пробег на 1 с включенным доп. оборудованием, км"
+      }
+    },
     "uv4": {
-      "name":"Дополнительное оборудование №4",
-      "fields": [
-        {"univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км"},
-        {"univInputMaxValueByPeriod": "Максимальное значение за период"},
-        {"univInputMinValueByPeriod": "Минимальное значение за период"},
-        {"univInputSumValueByPeriod": "Суммарное значение за период"},
-        {"univInputOnTime": "Время работы, час:мин:сек"} ,
-        {"univInputOffTime": "Время простоя, час:мин:сек"} ,
-        {"univInputOnConsumption": "Расход с включенным доп. оборудованием, <mu_volume>"},
-        {"univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км, <mu_volume>"},
-        {"univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас, <mu_volume>"},
-        {"univInputCritTime": "Время работы выше допустимого значения, час:мин:сек"},
-        {"univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек"},
-        {"univInputMileagePerLitre": "Пробег на 1 <mu_volume> с включенным доп. оборудованием, км"}
-      ]
+      "name": "Дополнительное оборудование №4",
+      "fields": {
+        "univInputOnMileage": "Пробег с работающим дополнительным оборудованием, км",
+        "univInputMaxValueByPeriod": "Максимальное значение за период",
+        "univInputMinValueByPeriod": "Минимальное значение за период",
+        "univInputSumValueByPeriod": "Суммарное значение за период",
+        "univInputOnTime": "Время работы, час:мин:сек",
+        "univInputOffTime": "Время простоя, час:мин:сек",
+        "univInputOnConsumption": "Расход с включенным доп. оборудованием",
+        "univInputOnConsumptionBy100": "Расход с включенным доп. оборудованием на 100 км",
+        "univInputHourConsumption": "Расход с включенным доп. оборудованием на моточас",
+        "univInputCritTime": "Время работы выше допустимого значения, час:мин:сек",
+        "univInputBelowMaxValue": "Время работы ниже допустимого значения, час:мин:сек",
+        "univInputMileagePerLitre": "Пробег на 1 <mu_volume> с включенным доп. оборудованием, км"
+      }
     },
     "canEnd": {
       "name": "Показания счетчиков (с шины  CAN)",
-      "fields":[
-        {"spn245": "Значение одометра CAN на конец периода/смены, км"},
-        {"spn246": "Значение одометра CAN на начало периода/смены, км"},
-        {"spn247": "Значение счетчика моточасов, час:мин"},
-        {"spn250": "Значение счетчика расхода топлива, <mu_volume>"}
-      ]
+      "fields": {
+        "spn245": "Значение одометра CAN на конец периода/смены, км",
+        "spn246": "Значение одометра CAN на начало периода/смены, км",
+        "spn247": "Значение счетчика моточасов, час:мин",
+        "spn250": "Значение счетчика расхода топлива"
+      }
     },
-    "canCounters":{
-      "name":"Значения счетчиков до ТО (с шины  CAN)",
-      "fields":[
-        {"spn914": "Пробег до ТО, км"},
-        {"spn916": "Моточасов до ТО, ч"}
-      ]
+      "canCounters": {
+        "name": "Значения счетчиков до ТО (с шины  CAN)",
+        "fields": {
+          "spn914": "Пробег до ТО, км",
+        "spn916": "Моточасов до ТО, ч"
+      }
     },
     "canLoading":{
       "name": "Данные с CAN за период построения отчета",
-      "fields":[
-        {"distance": "Пробег, км"},
-        {"engineOperationMin": "Моточасы, час:мин"},
-        {"fuelUsed": "Расход топлива, <mu_volume>"}
-      ]
+      "fields":{
+       "distance": "Пробег, км",
+       "engineOperationMin": "Моточасы, час:мин",
+       "fuelUsed": "Расход топлива"
+    }
     }
   }
 }
