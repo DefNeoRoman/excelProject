@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,8 +16,12 @@ public class ExcelTestClass {
       ParseJsonFiles parseJsonFiles = new ParseJsonFiles();
         List<File> jsonFiles = parseJsonFiles.getJsonFiles();
         ParseGroovyClass parseGroovyClass = new ParseGroovyClass(jsonFiles.get(4));
+        List<ExcelHeader> headerList = new ArrayList<>();
         ExcelHeader mainMap = parseGroovyClass.getMainMap();
-        ExcelFiller excelFiller = new ExcelFiller(Collections.singletonList(mainMap));
+        ExcelHeader movementMap = parseGroovyClass.getMovementMap();
+        headerList.add(mainMap);
+        headerList.add(movementMap);
+        ExcelFiller excelFiller = new ExcelFiller(headerList);
         xlsConstructor(excelFiller);
     }
 
@@ -50,24 +55,41 @@ public class ExcelTestClass {
         CellStyle headerStyle = xlsGenerator.getHeaderStyle();
         List<ExcelHeader> headers = filler.getHeaders();
         ExcelHeader header = headers.get(0);
+        ExcelHeader movementHeader = headers.get(1);
         List<ExcelCell> cells = header.getCells();
-        int countMerge = cells.size();
+        List<ExcelCell> movementCells = movementHeader.getCells();
+        int countMerge = cells.size()-1;
+        int movementMerge = movementCells.size()-1;
         Cell head = headerRow.createCell(0);
+        Cell movement = headerRow.createCell(countMerge+1);
         head.setCellStyle(headerStyle);
         head.setCellValue(header.getName());
+        movement.setCellStyle(headerStyle);
+        movement.setCellValue(movementHeader.getName());
         sheet.addMergedRegion(new CellRangeAddress(
                 0, //first headerRow (0-based)
                 0, //last headerRow  (0-based)
                 0, //first column (0-based)
                 countMerge  //last column  (0-based)
         ));
+        sheet.addMergedRegion(new CellRangeAddress(
+                0, //first headerRow (0-based)
+                0, //last headerRow  (0-based)
+                countMerge+1, //first column (0-based)
+                movementMerge  //last column  (0-based)
+        ));
        for(int i=0; i< cells.size(); i++){
            Cell currentCell = underHeadRow.createCell(i);
-
-           ExcelCell excelCell =  cells.get(i);
-
            currentCell.setCellValue(cells.get(i).getValue());
+           sheet.autoSizeColumn(i);
        }
+        int region = cells.size() + movementCells.size();
+
+        for(int i = cells.size(); i< region; i++){
+            Cell currentCell = underHeadRow.createCell(i);
+            currentCell.setCellValue(movementCells.get(i-cells.size()).getValue());
+            sheet.autoSizeColumn(i);
+        }
         try {
             book.write(new FileOutputStream("abc.xls"));
             book.close();
