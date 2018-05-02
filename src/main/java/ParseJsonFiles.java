@@ -7,6 +7,7 @@ public class ParseJsonFiles {
 
     public List<File> getJsonFiles(){
         URL locale =    ParseJsonFiles.class.getResource("fake/locale.json");
+        URL real =    ParseJsonFiles.class.getResource("real.json");
         URL rows =      ParseJsonFiles.class.getResource("fake/rows.json");
         URL xlsSchema = ParseJsonFiles.class.getResource("fake/xlsModel.json");
         URL local_ru = ParseJsonFiles.class.getResource("localization-ru.json");
@@ -15,6 +16,7 @@ public class ParseJsonFiles {
         List<File> files = new ArrayList<>();
 
         files.add(new File(locale.getFile()));
+        files.add(new File(real.getFile()));
         files.add(new File(rows.getFile()));
         files.add(new File(xlsSchema.getFile()));
         files.add(new File(local_ru.getFile()));
