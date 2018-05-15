@@ -1,3 +1,5 @@
+package old;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
@@ -11,12 +13,17 @@ import java.util.List;
 public class ExcelTestClass {
     public static void main(String[] args) throws IOException {
         ParseJsonFiles parseJsonFiles = new ParseJsonFiles();
+        parseJsonFiles.addJsonFileToList("groups.json");
+        parseJsonFiles.addJsonFileToList("real.json");
+        parseJsonFiles.addJsonFileToList("visibleAttributes.json");
+        parseJsonFiles.addJsonFileToList("attrsWithoutCondition.json");
         List<File> jsonFiles = parseJsonFiles.getJsonFiles();
-        ParseGroovyClass parseGroovyClass = new ParseGroovyClass(jsonFiles.get(4));
+        ParseGroovyClass parseGroovyClass = new ParseGroovyClass(jsonFiles.get(0));
         ParseGroovyClass pGroovyClass2 = new ParseGroovyClass(jsonFiles.get(1));
+       //распарсили реальный json в лист из мап
         pGroovyClass2.test();
-//        List<ExcelHeader> headerList = parseGroovyClass.getHeaders();
-//        ExcelFiller excelFiller = new ExcelFiller(headerList);
+//        List<old.ExcelHeader> headerList = parseGroovyClass.getHeaders();
+//        old.ExcelFiller excelFiller = new old.ExcelFiller(headerList);
 //        xlsConstructor(excelFiller);
     }
 

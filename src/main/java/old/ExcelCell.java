@@ -1,3 +1,5 @@
+package old;
+
 public class ExcelCell {
     private String key;
     private String value;
@@ -11,7 +13,7 @@ public class ExcelCell {
 
     @Override
     public String toString() {
-        return "ExcelCell{" +
+        return "old.ExcelCell{" +
                 "key='" + key + '\'' +
                 ", value='" + value + '\'' +
                 '}';

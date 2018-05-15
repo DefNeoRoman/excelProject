@@ -1,3 +1,5 @@
+package old
+
 class PathEntity {
     private String name;
     private def fields;

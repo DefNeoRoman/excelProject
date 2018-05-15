@@ -1,0 +1,9 @@
+{
+  "attrs" : [
+    "shiftsStart",
+    "shiftsEnd",
+    "date",
+    "startTime",
+    "endTime"
+  ]
+}

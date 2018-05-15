@@ -1,3 +1,5 @@
+package old;
+
 import java.util.List;
 
 public class ExcelHeader {
@@ -27,7 +29,7 @@ public class ExcelHeader {
 
     @Override
     public String toString() {
-        return "ExcelHeader{" +
+        return "old.ExcelHeader{" +
                 "name='" + name + '\'' +
                 ", cells=" + cells +
                 '}';
