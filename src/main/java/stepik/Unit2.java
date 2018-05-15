@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Unit2 {
     public static void main(String[] args) {
         int [] arr1 =  {250,1,0,8,-99};
-        int [] arr2 =  {1};
+        int [] arr2 =  {};
         System.out.println(Arrays.toString(unitSort(arr1,arr2)));
     }
     public static int[] unitSort(int [] arr1, int [] arr2){
