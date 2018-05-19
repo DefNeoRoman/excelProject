@@ -4,14 +4,36 @@ import java.util.Arrays;
 
 public class Unit2 {
     public static void main(String[] args) {
-        int [] arr1 =  {250,1,0,8,-99};
-        int [] arr2 =  {78,-90};
-        System.out.println(Arrays.toString(unitSort(arr1,arr2)));
+        int [] arr1 =  {-90,1,8,10};
+        int [] arr2 =  {-65, 100};
+        System.out.println(Arrays.toString(mergeSort(arr1,arr2)));
     }
     public static int[] unitSort(int [] arr1, int [] arr2){
         int [] result = Arrays.copyOf(arr1, arr1.length + arr2.length);
         System.arraycopy(arr2, 0, result, arr1.length, arr2.length);
-        return mergeSort(result);
+        Arrays.sort(result);
+        return result;
+    }
+    //если предположить что входные массивы изначально отсортированы по возрастанию
+    public static int[] mergeSort(int[] a1, int[] a2) {
+        int n = a1.length + a2.length;
+        int[] arr = new int[n];
+        int i1 = 0;
+        int i2 = 0;
+        for (int i = 0; i < n; i++) {
+            if (i1 == a1.length) {
+                arr[i] = a2[i2++];
+            } else if (i2 == a2.length) {
+                arr[i] = a1[i1++];
+            } else {
+                if (a1[i1] < a2[i2]) {
+                    arr[i] = a1[i1++];
+                } else {
+                    arr[i] = a2[i2++];
+                }
+            }
+        }
+        return arr;
     }
     public static int [] mergeSort(int [] arr1){
         // условие выхода из рекурсии
