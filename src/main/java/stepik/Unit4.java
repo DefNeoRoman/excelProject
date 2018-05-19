@@ -1,7 +1,5 @@
 package stepik;
 
-import java.util.Objects;
-
 public class Unit4 {
     public final class ComplexNumber {
         private final double re;
@@ -22,17 +20,25 @@ public class Unit4 {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             ComplexNumber that = (ComplexNumber) o;
-            return Double.compare(that.re, re) == 0 &&
-                    Double.compare(that.im, im) == 0;
+            return im == that.getIm() && re == that.getRe();
+
         }
 
         @Override
         public int hashCode() {
 
-            return Objects.hash(re, im);
+         int prime = 31;
+         int result =1;
+         result = prime*result + Double.hashCode(re);
+         result = prime*result + Double.hashCode(im);
+         return result;
         }
     }
 }

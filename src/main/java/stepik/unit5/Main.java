@@ -1,7 +1,5 @@
 package stepik.unit5;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,16 +14,17 @@ public class Main {
         tests[7] = "Very bad, very neg =(, very ..................";      // SPAM or NEGATIVE_TEXT or TOO_LONG
         TextAnalyzer [] analyzers = {
                 new NegativeTextAnalyzer(),
-//                new SpamAnalyzer("=(",":("),
-//                new TooLongTextAnalyzer(50)
+                new SpamAnalyzer("=(",":("),
+                new TooLongTextAnalyzer(50)
         };
 
         System.out.println(checkLabels(analyzers,tests[4]));
     }
+    // Первое не ОК решение
     public static Label checkLabels(TextAnalyzer[] analyzers, String text) {
         Label label = Label.OK;
         for(TextAnalyzer a: analyzers){
-           label = a.processText(text);
+            label = a.processText(text);
         }
 
        return label;
