@@ -22,24 +22,24 @@ public class Main {
     }
     public static ByteArrayOutputStream windowsToUnix(ByteArrayInputStream bis) throws IOException {
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        int buffer =  0;
-        while(bis.available() != 0){
-            int inputByte = bis.read();
-           if(inputByte == 13 && buffer == 10){
-                byteArrayOutputStream.write(buffer);
-                buffer = inputByte;
-            }else if(inputByte != -1){
-                byteArrayOutputStream.write(inputByte);
-                buffer = inputByte;
-            }else{
-                byteArrayOutputStream.write(inputByte);
-                byteArrayOutputStream.write(buffer);
-            }
-
-        }
-        byteArrayOutputStream.flush();
-        return byteArrayOutputStream;
+      ByteArrayOutputStream bos = new ByteArrayOutputStream();
+      int buffer1 = bis.read();
+      int buffer2 = 0;
+      while(bis.available() != 0){
+          buffer2 = bis.read();
+          if(buffer1 == 13 && buffer2 == 10){
+              bos.write(buffer2);
+              buffer1 = buffer2;
+          }else{
+              bos.write(buffer1);
+              buffer1 = buffer2;
+              if(bis.read() == -1){
+                  bos.write(buffer1);
+              }
+          }
+      }
+      bos.flush();
+      return bos;
     }
     }
 
