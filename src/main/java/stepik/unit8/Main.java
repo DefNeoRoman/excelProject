@@ -13,28 +13,19 @@ public class Main {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         windowsToUnix(byteArrayInputStream,byteArrayOutputStream);
         System.out.println(Arrays.toString(byteArrayOutputStream.toByteArray()));
-        // windowsToUnix(System.in,System.out);
+      }
 
-    }
     public static void windowsToUnix(InputStream bis, OutputStream bos) throws IOException {
         int buffer1 = bis.read();
         int buffer2 = 0;
-        while (bis.available() != 0) {
+        while (buffer1 != -1) {
             buffer2 = bis.read();
-            if (buffer1 == 13 && buffer2 == 10) {
-                bos.write(buffer2);
-                buffer1 = bis.read();
-                } else {
-                bos.write(buffer1);
-                buffer1 = buffer2;
-
-            }
-            if (bis.available() == 0) {
+            if (!(buffer1 == 13 && buffer2 == 10)) {
                 bos.write(buffer1);
             }
+            buffer1 = buffer2;
         }
         bos.flush();
-
     }
 }
 
