@@ -4,9 +4,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
+    public static final String STONES = "stones";
     private static final String AUSTIN_POWERS = "Austin Powers";
     private static final String WEAPONS = "weapons";
     private static final String BANNED_SUBSTANCE = "banned substance";
+
+    public static void main(String[] args) {
+        Sendable [] messages = {
+          new MailMessage(AUSTIN_POWERS,"Agent",WEAPONS),
+          new MailMessage("Gendalf","Aragorn","RingOfPower"),
+          new MailMessage("Oin","Gloin",BANNED_SUBSTANCE),
+          new MailPackage("Вова","Витя",new Package("Money",70)),
+          new MailPackage("Вася","Витя",new Package("bread",40)),
+          new MailPackage("Вася","Витя",new Package(STONES,40)),
+        };
+        MailService [] services = {
+          new Inspector(),
+          new Spy(Logger.getLogger(Main.class.getName())),
+          new Thief(50),
+
+        };
+        UntrustworthyMailWorker worker = new UntrustworthyMailWorker(services);
+            for(Sendable s: messages){
+                worker.processMail(s);
+            }
+
+    }
+
     public static class Inspector implements MailService {
         public Inspector() {
         }
@@ -14,14 +38,15 @@ public class Main {
         @Override
         public Sendable processMail(Sendable mail) {
             MailPackage mailPackage;
-           
+
                 if (mail instanceof MailPackage) {
                     mailPackage = (MailPackage) mail;
                     if (mailPackage.getContent().getContent().equals(WEAPONS)
                             || mailPackage.getContent().getContent().equals(BANNED_SUBSTANCE)) {
                         throw new IllegalPackageException();
                     }
-                    if (mailPackage.getContent().getContent().contains("stones")) {
+                    if (mailPackage.getContent().getContent().contains(STONES)) {
+
                         throw new StolenPackageException();
                     }
                 }
