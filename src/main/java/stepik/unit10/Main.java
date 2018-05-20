@@ -30,10 +30,10 @@ public class Main {
 
     public static Animal[] deserializeAnimalArray(byte[] data) {
         Animal[] animals = new Animal[0];
-        try(ByteArrayInputStream bis = new ByteArrayInputStream(data)) {
+        ByteArrayInputStream bis = new ByteArrayInputStream(data);
             try(ObjectInput in = new ObjectInputStream(bis)) {
                int c = 0;
-               animals = new Animal[in.readInt()];
+                 animals = new Animal[in.readInt()];
                 while(bis.available() != 0){
                     Animal ani = (Animal)in.readObject();
                     animals[c] = ani;
@@ -45,9 +45,6 @@ public class Main {
             } catch ( ClassNotFoundException e){
                 throw new IllegalArgumentException();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return animals;
 
     }
