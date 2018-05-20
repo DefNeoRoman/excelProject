@@ -19,7 +19,6 @@ public class ParseScanner {
                     scanner.next();
                 }
             }
-
             System.out.printf(Locale.ENGLISH, "%.6f", sum);
         }
 }
