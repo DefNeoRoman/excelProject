@@ -1,8 +1,10 @@
 package stepik.unit62;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class FuncInterFace {
     // Consumer принимает, но ничего не возвращает
@@ -17,6 +19,7 @@ public class FuncInterFace {
         Function<Object, Integer> ifTrue = obj -> 0;
         Function<CharSequence, Integer> ifFalse = CharSequence::length;
         Function<String, Integer> safeStringLength = ternaryOperator(condition, ifTrue, ifFalse);
+        Stream<Object> stream = new ArrayList<>().stream();
 
         System.out.println(safeStringLength.apply("Str"));
     }
