@@ -2,6 +2,7 @@ package old;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,23 +13,11 @@ import java.util.List;
 
 public class ExcelTestClass {
     public static void main(String[] args) throws IOException {
-        ParseJsonFiles parseJsonFiles = new ParseJsonFiles();
-        parseJsonFiles.addJsonFileToList("groups.json");
-        parseJsonFiles.addJsonFileToList("real.json");
-        parseJsonFiles.addJsonFileToList("visibleAttributes.json");
-        parseJsonFiles.addJsonFileToList("attrsWithoutCondition.json");
-        List<File> jsonFiles = parseJsonFiles.getJsonFiles();
-        ParseGroovyClass parseGroovyClass = new ParseGroovyClass(jsonFiles.get(0));
-        ParseGroovyClass pGroovyClass2 = new ParseGroovyClass(jsonFiles.get(1));
-       //распарсили реальный json в лист из мап
-        pGroovyClass2.test();
-//        List<old.ExcelHeader> headerList = parseGroovyClass.getHeaders();
-//        old.ExcelFiller excelFiller = new old.ExcelFiller(headerList);
-//        xlsConstructor(excelFiller);
+        testXls();
     }
 
 
-    public void testXls() {
+    public static void testXls() {
         Workbook book = new HSSFWorkbook();
         Sheet sheet = book.createSheet("Birthdays");
         Row row = sheet.createRow(0);
@@ -40,6 +29,11 @@ public class ExcelTestClass {
         dateStyle.setDataFormat(format.getFormat("dd.mm.yyyy"));
         birthdate.setCellStyle(dateStyle);
         birthdate.setCellValue(new Date(110, 10, 10));
+        CellRangeAddress cellRangeAddress;
+        cellRangeAddress = new CellRangeAddress(6, 6,0, 2);
+        if (cellRangeAddress.getNumberOfCells() > 1) {
+            sheet.addMergedRegion(cellRangeAddress);
+        }
         sheet.autoSizeColumn(1);
         try {
             book.write(new FileOutputStream("abc.xls"));
