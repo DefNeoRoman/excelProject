@@ -1,9 +1,8 @@
 package stepik.unit64;
 
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -17,24 +16,29 @@ public class Pseudo {
 
     public static void main(String[] args) {
 
-        Calendar calendar = Calendar.getInstance();
+       List<Integer> listInteger = new ArrayList<>();
+       listInteger.add(5);
+       listInteger.add(6);
+       listInteger.add(3);
+       listInteger.add(8);
+       listInteger.add(1);
+       listInteger.add(10);
 
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
-        System.out.println(calendar.getTime().toString());// это будет начало месяца
-        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        System.out.println(calendar.getTime().getTime());// это будет конец месяца
-        BiConsumer biConsumer = new BiConsumer() {
-            @Override
-            public void accept(Object o, Object o2) {
-
-            }
-        };
     }
     public static <T> void findMinMax(
-            Stream<? extends T> stream,
-            Comparator<? super T> order,
+            Stream<? extends T> stream, Comparator<? super T> order,
             BiConsumer<? super T, ? super T> minMaxConsumer) {
 
-        minMaxConsumer.accept((T)stream.min(order),(T)stream.max(order));
+        List<? extends T> collect = stream.collect(Collectors.toList());
+
+        T min = (T) collect.stream().min(order);
+
+        T max = (T) collect.stream().max(order);
+
+
+        if(min == null || max == null){
+            minMaxConsumer.accept(null,null);
+        }
+        minMaxConsumer.accept(min,max);
     }
 }

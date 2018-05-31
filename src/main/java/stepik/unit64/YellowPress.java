@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 
 public class YellowPress {
     public static void main(String[] args) {
-        // Random variables
+         // Random variables
         String randomFrom = "..."; // Некоторая случайная строка. Можете выбрать ее самостоятельно.
-        String randomTo = "...";  // Некоторая случайная строка. Можете выбрать ее самостоятельно.
+        String randomTo = "Ffffff ";  // Некоторая случайная строка. Можете выбрать ее самостоятельно.
         int randomSalary = 100;  // Некоторое случайное целое положительное число. Можете выбрать его самостоятельно.
 
 // Создание списка из трех почтовых сообщений.
@@ -83,7 +83,12 @@ public class YellowPress {
         assert salaries.get(randomTo).equals(Arrays.asList(randomSalary)): "wrong salaries mailbox content (3)";
 
     }
-    public static class MailMessage {
+   abstract static class Message<T> {
+       abstract   String getFrom();
+       abstract   String getTo();
+       abstract   T getContent();
+   }
+    public static class MailMessage extends Message<String> {
         String from;
 
         String to;
@@ -96,18 +101,24 @@ public class YellowPress {
             this.to = str2;
             this.content = str3;
         }
-        String  getFrom(){
+
+        @Override
+        String getFrom() {
             return from;
         }
-        String  getTo(){
+
+        @Override
+        String getTo() {
             return to;
         }
-        String  getContent(){
+
+        @Override
+        String getContent() {
             return content;
         }
     }
 
-    public static class Salary {
+    public static class Salary extends Message<Integer>{
        String from;
        String to;
        Integer salary;
@@ -118,21 +129,53 @@ public class YellowPress {
             this.salary = salary;
         }
 
-        public String getTo() {
+
+        @Override
+        String getFrom() {
+            return from;
+        }
+
+        @Override
+        String getTo() {
             return to;
+        }
+
+        @Override
+        Integer getContent() {
+            return salary;
         }
     }
 
-    public static class MailService<T> implements Consumer{
-        Map<String, List<T>> mailBox = new HashMap<>();
-
+    public static class MailService<T> implements Consumer<Message<T>>{
+        Map<String, List<T>> mailBox = new MailServiceHashMap<>();
+        private static class MailServiceHashMap<K,V> extends HashMap<K,V>{
+            @Override
+            public V get(Object key) {
+                V value = super.get(key);
+                if(value == null){
+                    value = (V)Collections.EMPTY_LIST;
+                }
+                return value;
+            }
+        }
         public Map<String, List<T>> getMailBox() {
             return mailBox;
         }
 
-        @Override
-        public void accept(Object o) {
 
+        @Override
+        public void accept(Message<T> t) {
+            if(mailBox.containsKey(t.getTo())) {
+                List<T> val;
+                val = mailBox.get(t.getTo());
+                val.add(t.getContent());
+                mailBox.put(t.getTo(), val);
+            } else {
+                List<T> val;
+                val = new LinkedList<>();
+                val.add(t.getContent());
+                mailBox.put(t.getTo(), val);
+            }
         }
     }
 }
