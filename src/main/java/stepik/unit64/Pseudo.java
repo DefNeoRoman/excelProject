@@ -16,24 +16,29 @@ public class Pseudo {
 
     public static void main(String[] args) {
 
-       List<Integer> listInteger = new ArrayList<>();
+       List<Integer> listInteger = new LinkedList<>();
        listInteger.add(5);
        listInteger.add(6);
        listInteger.add(3);
        listInteger.add(8);
        listInteger.add(1);
        listInteger.add(10);
-
+        findMinMax(listInteger.stream(), Integer::compareTo, (integer, integer2) -> {
+            System.out.println(integer);
+            System.out.println(integer2);
+        });
     }
     public static <T> void findMinMax(
             Stream<? extends T> stream, Comparator<? super T> order,
             BiConsumer<? super T, ? super T> minMaxConsumer) {
+        LinkedList<? extends T> collect = new LinkedList<>();
+Deque deque = new LinkedList();
 
-        List<? extends T> collect = stream.collect(Collectors.toList());
+        stream.sorted(order).forEach(el->deque.addFirst(el));
 
-        T min = (T) collect.stream().min(order);
 
-        T max = (T) collect.stream().max(order);
+        T min = (T)deque.getLast();
+        T max = (T)deque.getFirst();
 
 
         if(min == null || max == null){
