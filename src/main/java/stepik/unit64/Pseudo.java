@@ -1,8 +1,10 @@
 package stepik.unit64;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -31,19 +33,22 @@ public class Pseudo {
     public static <T> void findMinMax(
             Stream<? extends T> stream, Comparator<? super T> order,
             BiConsumer<? super T, ? super T> minMaxConsumer) {
-        LinkedList<? extends T> collect = new LinkedList<>();
+
 Deque deque = new LinkedList();
 
-        stream.sorted(order).forEach(el->deque.addFirst(el));
+        stream.sorted(order).forEach(deque::addFirst);
 
 
-        T min = (T)deque.getLast();
-        T max = (T)deque.getFirst();
-
-
-        if(min == null || max == null){
+        T min = null;
+        T max = null;
+        if(deque.size() == 0){
             minMaxConsumer.accept(null,null);
+        }else{
+            min = (T)deque.getLast();
+            max = (T)deque.getFirst();
+            minMaxConsumer.accept(min,max);
         }
-        minMaxConsumer.accept(min,max);
+
+
     }
 }
