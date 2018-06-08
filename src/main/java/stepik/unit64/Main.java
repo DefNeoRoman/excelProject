@@ -1,4 +1,4 @@
-package stepik.unit63;
+package stepik.unit64;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -13,10 +13,13 @@ public class Main {
             Function<? super T, ? extends U> ifTrue,
             Function<? super T, ? extends U> ifFalse) {
 
-        return t->condition.test(t) ? ifTrue.apply(t) : ifFalse.apply(t); // your implementation here
+       //return t->condition.test(t) ? ifTrue.apply(t) : ifFalse.apply(t); // your implementation here
+        return new Function<T, U>() {
+            @Override
+            public U apply(T t) {
+                return condition.test(t) ? ifTrue.apply(t) : ifFalse.apply(t);
+            }
+        };
+    }
 
-    }
-    static abstract class Anonimus<T,R>{
-       abstract R apply(T t);
-    }
 }

@@ -45,7 +45,7 @@ public class Robot {
         }
     }
 
-    public void stepForward() {
+    protected void stepForward() {
         String name = direction.name();
         switch (name){
             case "UP": y++;

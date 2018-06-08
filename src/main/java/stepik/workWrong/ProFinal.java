@@ -1,6 +1,8 @@
 package stepik.workWrong;
 
 public class ProFinal {
+    int age = 30;
+
 //    Переменная final может быть инициализирована
 //    только один раз. Ссылочная переменная, объявленная как final,
 //    никогда не может быть назначен для обозначения другого объекта.
@@ -19,6 +21,14 @@ public class ProFinal {
 //    Главным намерение сделать метод final будет то, что содержание
 //    метода не должно быть изменено стороне.
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public final void method(){
 
     }
@@ -26,6 +36,7 @@ public class ProFinal {
 
     }
     public static void main(String[] args) {
+        ProFinal proFinal = new ProFinal();
 
     }
 }

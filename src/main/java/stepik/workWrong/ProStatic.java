@@ -1,7 +1,15 @@
 package stepik.workWrong;
 
 public final class ProStatic {
+    private final ProFinal proFinal = new ProFinal();
+    static {
+
+    }
     public static void main(String[] args) {
+    Math.abs(50);
+
+        double pi = Math.PI;
+
 //         В отличие от локальных переменных,
 //                статические поля и методы НЕ
 //        потокобезопасны (Thread-safe)

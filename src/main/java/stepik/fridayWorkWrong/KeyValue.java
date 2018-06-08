@@ -18,9 +18,11 @@ public class KeyValue<K,V> {
 
     @Override
     public int hashCode() {
-        if(first == null || second == null){
+        if(first == null && second == null){
+            // в одном случае один хешкод, в другом случае другой
             return 31;
         }
+
         int result = 31 * first.hashCode();
         result = result + result*second.hashCode();
         return result;
