@@ -84,65 +84,41 @@ public class YellowPress {
 
     }
    abstract static class Message<T> {
-       abstract   String getFrom();
-       abstract   String getTo();
-       abstract   T getContent();
+       public Message(String from, String to, T content) {
+           this.from = from;
+           this.to = to;
+           this.content = content;
+       }
+
+       String from;
+
+       String to;
+
+       T content;
+          String getFrom(){
+              return from;
+          }
+          String getTo(){
+              return to;
+          }
+          T getContent(){
+              return content;
+          }
    }
     public static class MailMessage extends Message<String> {
-        String from;
-
-        String to;
-
-        String content;
 
 
         public MailMessage(String str1, String str2, String str3) {
-            this.from = str1;
-            this.to = str2;
-            this.content = str3;
+            super(str1,str2,str3);
         }
 
-        @Override
-        String getFrom() {
-            return from;
-        }
 
-        @Override
-        String getTo() {
-            return to;
-        }
-
-        @Override
-        String getContent() {
-            return content;
-        }
     }
 
     public static class Salary extends Message<Integer>{
-       String from;
-       String to;
-       Integer salary;
 
         public Salary(String from, String to, Integer salary) {
-            this.from = from;
-            this.to = to;
-            this.salary = salary;
-        }
-
-
-        @Override
-        String getFrom() {
-            return from;
-        }
-
-        @Override
-        String getTo() {
-            return to;
-        }
-
-        @Override
-        Integer getContent() {
-            return salary;
+           super(from,to,salary);
         }
     }
 
