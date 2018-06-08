@@ -153,7 +153,7 @@ public class YellowPress {
             public V get(Object key) {
                 V value = super.get(key);
                 if(value == null){
-                    value = (V)Collections.EMPTY_LIST;
+                    value = (V)new LinkedList<>();
                 }
                 return value;
             }
@@ -165,17 +165,14 @@ public class YellowPress {
 
         @Override
         public void accept(Message<T> t) {
-            if(mailBox.containsKey(t.getTo())) {
+
                 List<T> val;
                 val = mailBox.get(t.getTo());
                 val.add(t.getContent());
                 mailBox.put(t.getTo(), val);
-            } else {
-                List<T> val;
-                val = new LinkedList<>();
-                val.add(t.getContent());
-                mailBox.put(t.getTo(), val);
-            }
+
+
+
         }
     }
 }
