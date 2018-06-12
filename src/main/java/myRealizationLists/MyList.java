@@ -24,4 +24,6 @@ public interface MyList<E> {
     // размер
     int size();
 
+    void clear();
+
 }
