@@ -14,11 +14,12 @@ public class MyLinkListTest {
         for(int i = 0; i<10; i++){
             testStorage.add(new Pair("left"+i,"right"+i));
         }
-
     }
     @Test
     public void get() {
-        assertEquals(testStorage.get(6),new Pair("left5","right5"));
+        for(int i = 0; i<10; i++){
+           assertEquals(testStorage.get(i),new Pair("left"+i,"right"+i));
+        }
     }
 
     @Test
@@ -28,11 +29,12 @@ public class MyLinkListTest {
 
     @Test
     public void getFirst() {
-
+        assertEquals(testStorage.getFirst(),new Pair("left0","right0"));
     }
 
     @Test
     public void getLast() {
+        assertEquals(testStorage.getLast(),new Pair("left9","right9"));
     }
 
     @Test
@@ -53,17 +55,25 @@ public class MyLinkListTest {
 
     @Test
     public void delete() {
+        testStorage.delete(7);
+        for(int i = 0; i<5; i++){
+            assertEquals(testStorage.get(i),new Pair("left"+i,"right"+i));
+        }
     }
 
     @Test
     public void delete1() {
+
     }
 
     @Test
     public void size() {
+        assertEquals(testStorage.size(),10);
     }
 
     @Test
     public void clear() {
+        testStorage.clear();
+        assertEquals(testStorage.size(),0);
     }
 }

@@ -2,57 +2,51 @@ package myRealizationLists.linkedList;
 
 import myRealizationLists.MyList;
 
+import java.util.LinkedList;
+
 public class MyLinkList<E> implements MyList<E> {
     private int size = 0;
     //Изначально голова является также и хвостом
-    private Node head = new Node(0, null, null);
+    private Node head = new Node("head", null, null);
     private Node tail;
 
     public MyLinkList() {
-        tail = new Node(1, head, null);
-        head.prev = tail;
+        tail = new Node("tail", null, head);
+        head.next = tail;
+        head.prev = null;
+        tail.next = null;
+        tail.prev = head;
 
     }
 
     @Override
     public E get(int index) {
-        int currentSize = size();
-        int middle = currentSize / 2;
-        Node firstNode;
-        Node searchNode = new Node(null, null, null);
-        Node secondNode;
-        if (index > middle) {
-            firstNode = tail;
-            secondNode = tail.prev;
-            for (int i = currentSize; i >= 0; i--) {
-                if (i > index) {
-                    firstNode = secondNode;
-                    secondNode = firstNode.prev;
-                }
-                if (i == index) {
-                    searchNode = firstNode;
-
-                }
-
-            }
+        if (index < (size >> 1)) {
+            Node<E> x = head.next;
+            for (int i = 0; i < index; i++)
+                x = x.next;
+            return x.value;
         } else {
-            firstNode = head;
-            secondNode = head.prev;
-            for (int i = 0; i <= currentSize; i++) {
-                if (i < index) {
-                    firstNode = secondNode;
-                    secondNode = firstNode.next;
-                }
-                if (i == index) {
-                    searchNode = firstNode;
-                    return (E)searchNode.value;
-                }
-            }
+            Node<E> x = tail.prev;
+            for (int i = size - 1; i > index; i--)
+                x = x.prev;
+            return x.value;
         }
-
-        return (E) searchNode.value;
     }
 
+    public Node<E> getNode(int index) {
+        if (index < (size >> 1)) {
+            Node<E> x = head.next;
+            for (int i = 0; i < index; i++)
+                x = x.next;
+            return x;
+        } else {
+            Node<E> x = tail.prev;
+            for (int i = size - 1; i > index; i--)
+                x = x.prev;
+            return x;
+        }
+    }
     @Override
     public E getOrDefault(int i, E elem) {
         return null;
@@ -60,19 +54,22 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public E getFirst() {
-        return null;
+
+        return get(0);
     }
 
     @Override
     public E getLast() {
-        return null;
+       return get(size);
     }
 
     @Override
     public boolean add(E e) {
         size++;
-        Node currentNode = tail;
-        tail = new Node(e, null, currentNode);
+        Node prev = tail.getPrev();
+        Node newNode = new Node(e,tail,prev);
+        prev.setNext(newNode);
+        tail = new Node("tail",null,newNode);
         return true;
     }
 
@@ -129,7 +126,8 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public boolean delete(int index) {
-        return false;
+        size--;
+        return unlink(getNode(index));
     }
 
     @Override
@@ -144,9 +142,40 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public void clear() {
-
+        for (Node<E> x = head; x != null; ) {
+            Node<E> next = x.next;
+            x.value = null;
+            x.next = null;
+            x.prev = null;
+            x = next;
+        }
+        head = tail = null;
+        size = 0;
     }
+    boolean unlink(Node<E> x) {
+        // assert x != null;
+        final E element = x.value;
+        final Node<E> next = x.next;
+        final Node<E> prev = x.prev;
 
+        if (prev == null) {
+            head = next;
+        } else {
+            prev.next = next;
+            x.prev = null;
+        }
+
+        if (next == null) {
+            tail = prev;
+        } else {
+            next.prev = prev;
+            x.next = null;
+        }
+
+        x.value = null;
+        size--;
+        return true;
+    }
     class Node<E> {
         private E value;
         private Node next;
@@ -155,6 +184,30 @@ public class MyLinkList<E> implements MyList<E> {
         public Node(E value, Node next, Node prev) {
             this.value = value;
             this.next = next;
+            this.prev = prev;
+        }
+
+        public E getValue() {
+            return value;
+        }
+
+        public void setValue(E value) {
+            this.value = value;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+
+        public Node getPrev() {
+            return prev;
+        }
+
+        public void setPrev(Node prev) {
             this.prev = prev;
         }
     }
