@@ -55,8 +55,12 @@ public class MyLinkListTest {
 
     @Test
     public void delete() {
+        //здесь удаляем седьмой элемент то есть Pair8
         testStorage.delete(7);
-        for(int i = 0; i<5; i++){
+        for(int i = 0; i<8; i++){
+            assertEquals(testStorage.get(i),new Pair("left"+i,"right"+i));
+        }
+        for(int i = 9; i<10; i++){
             assertEquals(testStorage.get(i),new Pair("left"+i,"right"+i));
         }
     }

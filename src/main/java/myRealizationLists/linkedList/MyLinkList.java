@@ -2,8 +2,6 @@ package myRealizationLists.linkedList;
 
 import myRealizationLists.MyList;
 
-import java.util.LinkedList;
-
 public class MyLinkList<E> implements MyList<E> {
     private int size = 0;
     //Изначально голова является также и хвостом
@@ -51,6 +49,7 @@ public class MyLinkList<E> implements MyList<E> {
             return x;
         }
     }
+
     @Override
     public E getOrDefault(int i, E elem) {
         return null;
@@ -64,16 +63,16 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public E getLast() {
-       return get(size);
+        return get(size);
     }
 
     @Override
     public boolean add(E e) {
         size++;
         Node prev = tail.getPrev();
-        Node newNode = new Node(e,tail,prev);
+        Node newNode = new Node(e, tail, prev);
         prev.setNext(newNode);
-        tail = new Node("tail",null,newNode);
+        tail = new Node("tail", null, newNode);
         return true;
     }
 
@@ -156,9 +155,9 @@ public class MyLinkList<E> implements MyList<E> {
         head = tail = null;
         size = 0;
     }
+
     boolean unlink(Node<E> x) {
-        // assert x != null;
-        final E element = x.value;
+
         final Node<E> next = x.next;
         final Node<E> prev = x.prev;
 
@@ -177,9 +176,9 @@ public class MyLinkList<E> implements MyList<E> {
         }
 
         x.value = null;
-        size--;
         return true;
     }
+
     class Node<E> {
         private E value;
         private Node next;
