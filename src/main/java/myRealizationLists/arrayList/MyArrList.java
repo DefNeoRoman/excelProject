@@ -168,7 +168,7 @@ public class MyArrList<E> implements MyList<E> {
     public int size() {
         return index;
     }
-
+    @Override
     public void clear() {
         index = 0;
         values = (E[]) new Object[INIT_CAPACITY];
