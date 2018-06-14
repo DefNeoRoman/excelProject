@@ -21,7 +21,9 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public E get(int index) {
-        if (index < (size >> 1)) {
+        int middle = size / 2;
+
+        if (index < middle) {
             Node<E> x = head.next;
             for (int i = 0; i < index; i++)
                 x = x.next;
@@ -35,7 +37,9 @@ public class MyLinkList<E> implements MyList<E> {
     }
 
     public Node<E> getNode(int index) {
-        if (index < (size >> 1)) {
+        int middle = size / 2;
+
+        if (index < middle) {
             Node<E> x = head.next;
             for (int i = 0; i < index; i++)
                 x = x.next;
