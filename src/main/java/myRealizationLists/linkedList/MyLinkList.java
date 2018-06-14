@@ -52,7 +52,10 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public E getOrDefault(int i, E elem) {
-        return null;
+        if (i > size) {
+            return elem;
+        }
+        return get(i);
     }
 
     @Override
@@ -119,6 +122,9 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public boolean addIfAbsent(E element) {
+        if (!contains(element)) {
+            add(element);
+        }
         return false;
     }
 
@@ -135,7 +141,13 @@ public class MyLinkList<E> implements MyList<E> {
 
     @Override
     public boolean delete(E e) {
-        return false;
+        for (int i = 0; i < size; i++) {
+            E e1 = get(i);
+            if (e.equals(e1)) {
+                delete(i);
+            }
+        }
+        return true;
     }
 
     @Override
@@ -177,6 +189,18 @@ public class MyLinkList<E> implements MyList<E> {
 
         x.value = null;
         return true;
+    }
+
+    @Override
+    public boolean contains(E element) {
+
+        for (int i = 0; i < size; i++) {
+            E e1 = get(i);
+            if (element.equals(e1)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     class Node<E> {

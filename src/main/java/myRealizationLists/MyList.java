@@ -25,5 +25,5 @@ public interface MyList<E> {
     int size();
 
     void clear();
-
+    boolean contains (E e);
 }

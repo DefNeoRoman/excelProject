@@ -5,10 +5,18 @@ import java.util.Objects;
 public class Pair {
     private String left;
     private String right;
-
+    private String checkString;
     public Pair(String left, String right) {
         this.left = left;
         this.right = right;
+    }
+
+    public String getCheckString() {
+        return checkString;
+    }
+
+    public void setCheckString(String checkString) {
+        this.checkString = checkString;
     }
 
     @Override

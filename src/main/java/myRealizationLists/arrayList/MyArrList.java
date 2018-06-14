@@ -173,4 +173,9 @@ public class MyArrList<E> implements MyList<E> {
         index = 0;
         values = (E[]) new Object[INIT_CAPACITY];
     }
+
+    @Override
+    public boolean contains(E e) {
+        return false;
+    }
 }
